@@ -3,11 +3,331 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Essencia</title>
+
+  <title>ESSENCIA — Votre parfum, votre signature</title>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: Georgia, "Times New Roman", serif;
+      background: #f8f4ee;
+      color: #4f463e;
+    }
+
+    header {
+      background: #f8f4ee;
+      padding: 22px 7%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid #ded5c9;
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+
+    .logo {
+      font-size: 27px;
+      letter-spacing: 4px;
+      color: #75695e;
+      font-weight: bold;
+    }
+
+    nav a {
+      text-decoration: none;
+      color: #75695e;
+      margin-left: 22px;
+      font-size: 14px;
+    }
+
+    .hero {
+      min-height: 75vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 70px 20px;
+      background:
+        linear-gradient(rgba(248,244,238,.82), rgba(248,244,238,.92)),
+        url("");
+      background-size: cover;
+    }
+
+    .hero-content {
+      max-width: 700px;
+    }
+
+    .hero h1 {
+      font-size: 55px;
+      letter-spacing: 9px;
+      color: #665b52;
+      margin-bottom: 20px;
+    }
+
+    .hero p {
+      font-size: 18px;
+      line-height: 1.8;
+      margin-bottom: 30px;
+    }
+
+    .button {
+      display: inline-block;
+      padding: 14px 30px;
+      background: #817367;
+      color: white;
+      text-decoration: none;
+      border-radius: 3px;
+      letter-spacing: 1px;
+      transition: .3s;
+    }
+
+    .button:hover {
+      background: #62574e;
+    }
+
+    section {
+      padding: 70px 7%;
+    }
+
+    .section-title {
+      text-align: center;
+      margin-bottom: 45px;
+    }
+
+    .section-title h2 {
+      font-size: 30px;
+      letter-spacing: 3px;
+      font-weight: normal;
+    }
+
+    .section-title p {
+      margin-top: 12px;
+      color: #8b8076;
+    }
+
+    .categories {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+      max-width: 900px;
+      margin: auto;
+    }
+
+    .category {
+      background: #eee7dd;
+      padding: 38px 20px;
+      text-align: center;
+      border: 1px solid #ded5c9;
+      transition: .3s;
+    }
+
+    .category:hover {
+      transform: translateY(-4px);
+    }
+
+    .category h3 {
+      font-size: 21px;
+      margin-bottom: 10px;
+      font-weight: normal;
+    }
+
+    .category p {
+      color: #857a70;
+      font-size: 14px;
+    }
+
+    .about {
+      background: #eee7dd;
+      text-align: center;
+    }
+
+    .about-content {
+      max-width: 750px;
+      margin: auto;
+      line-height: 1.9;
+      color: #625950;
+    }
+
+    .contact {
+      text-align: center;
+    }
+
+    .socials {
+      margin-top: 25px;
+      line-height: 2;
+    }
+
+    .socials a {
+      color: #75695e;
+      text-decoration: none;
+      display: block;
+    }
+
+    footer {
+      background: #75695e;
+      color: white;
+      text-align: center;
+      padding: 25px 15px;
+      font-size: 13px;
+    }
+
+    @media (max-width: 650px) {
+      header {
+        flex-direction: column;
+        gap: 12px;
+      }
+
+      nav a {
+        margin: 0 7px;
+        font-size: 12px;
+      }
+
+      .hero h1 {
+        font-size: 38px;
+        letter-spacing: 6px;
+      }
+
+      .hero p {
+        font-size: 16px;
+      }
+
+      .categories {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
 </head>
+
 <body>
-  <h1>ESSENCIA</h1>
-  <p>Votre parfum, votre signature.</p>
-  <p>Notre boutique revient très bientôt.</p>
+
+<header>
+  <div class="logo">ESSENCIA</div>
+
+  <nav>
+    <a href="#accueil">Accueil</a>
+    <a href="#collections">Collections</a>
+    <a href="#apropos">À propos</a>
+    <a href="#contact">Contact</a>
+  </nav>
+</header>
+
+
+<section class="hero" id="accueil">
+  <div class="hero-content">
+
+    <h1>ESSENCIA</h1>
+
+    <p>
+      Découvrez des fragrances choisies avec soin,
+      pensées pour accompagner chaque personnalité.
+    </p>
+
+    <a href="#collections" class="button">
+      Découvrir nos collections
+    </a>
+
+  </div>
+</section>
+
+
+<section id="collections">
+
+  <div class="section-title">
+    <h2>Nos collections</h2>
+    <p>Des senteurs pour créer votre propre signature.</p>
+  </div>
+
+  <div class="categories">
+
+    <div class="category">
+      <h3>Huiles parfumées</h3>
+      <p>5 ml · 10 ml · 20 ml</p>
+    </div>
+
+    <div class="category">
+      <h3>Extraits de parfums</h3>
+      <p>20 ml · 30 ml · 50 ml</p>
+    </div>
+
+    <div class="category">
+      <h3>Parfums authentiques</h3>
+      <p>Une sélection de fragrances soigneusement choisies.</p>
+    </div>
+
+    <div class="category">
+      <h3>Brumes</h3>
+      <p>Légères, fraîches et agréables au quotidien.</p>
+    </div>
+
+    <div class="category">
+      <h3>Testeurs</h3>
+      <p>3 ml pour découvrir votre prochaine fragrance.</p>
+    </div>
+
+  </div>
+
+</section>
+
+
+<section class="about" id="apropos">
+
+  <div class="section-title">
+    <h2>À propos d'ESSENCIA</h2>
+  </div>
+
+  <div class="about-content">
+
+    <p>
+      ESSENCIA est une parfumerie en ligne née d'une envie simple :
+      rendre la découverte du parfum plus élégante, accessible et personnelle.
+    </p>
+
+    <br>
+
+    <p>
+      Nous sélectionnons différentes fragrances afin que chacun puisse
+      trouver celle qui correspond à son style, son humeur et sa personnalité.
+    </p>
+
+    <br>
+
+    <strong>ESSENCIA — Votre parfum, votre signature.</strong>
+
+  </div>
+
+</section>
+
+
+<section class="contact" id="contact">
+
+  <div class="section-title">
+    <h2>Restons connectés</h2>
+    <p>Suivez ESSENCIA et découvrez nos nouveautés.</p>
+  </div>
+
+  <div class="socials">
+
+    <a href="#">Instagram : @essencia.officiel</a>
+
+    <a href="#">TikTok : @essencia.officiel</a>
+
+    <a href="#">Snapchat : essencia00</a>
+
+    <a href="tel:+221772768356">WhatsApp : 77 276 83 56</a>
+
+  </div>
+
+</section>
+
+
+<footer>
+  © 2026 ESSENCIA — Tous droits réservés.
+</footer>
+
 </body>
 </html>
