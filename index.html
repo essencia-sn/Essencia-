@@ -8,196 +8,233 @@
 
   <style>
     * {
+      box-sizing: border-box;
       margin: 0;
       padding: 0;
-      box-sizing: border-box;
     }
 
     body {
       font-family: Georgia, "Times New Roman", serif;
-      background: #f8f4ee;
-      color: #4f463e;
+      background: #f7f3ec;
+      color: #4d463e;
+      line-height: 1.6;
     }
 
     header {
-      background: #f8f4ee;
-      padding: 22px 7%;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      border-bottom: 1px solid #ded5c9;
+      background: #f7f3ec;
+      padding: 22px 20px;
+      text-align: center;
+      border-bottom: 1px solid #d8cbb8;
       position: sticky;
       top: 0;
       z-index: 10;
     }
 
     .logo {
-      font-size: 27px;
-      letter-spacing: 4px;
-      color: #75695e;
+      font-size: 30px;
+      letter-spacing: 5px;
+      color: #5c5145;
       font-weight: bold;
     }
 
+    .tagline {
+      font-size: 12px;
+      letter-spacing: 2px;
+      margin-top: 3px;
+      color: #9a8975;
+    }
+
+    nav {
+      margin-top: 15px;
+    }
+
     nav a {
+      color: #5c5145;
       text-decoration: none;
-      color: #75695e;
-      margin-left: 22px;
-      font-size: 14px;
+      margin: 0 8px;
+      font-size: 13px;
     }
 
     .hero {
-      min-height: 75vh;
+      min-height: 78vh;
       display: flex;
       align-items: center;
       justify-content: center;
       text-align: center;
-      padding: 70px 20px;
-      background:
-        linear-gradient(rgba(248,244,238,.82), rgba(248,244,238,.92)),
-        url("");
-      background-size: cover;
+      padding: 50px 25px;
+      background: #eee7dc;
     }
 
     .hero-content {
-      max-width: 700px;
+      max-width: 650px;
+    }
+
+    .hero small {
+      letter-spacing: 3px;
+      color: #9a8975;
+      text-transform: uppercase;
     }
 
     .hero h1 {
-      font-size: 55px;
-      letter-spacing: 9px;
-      color: #665b52;
-      margin-bottom: 20px;
+      font-size: 48px;
+      letter-spacing: 7px;
+      margin: 15px 0;
+      color: #50463c;
     }
 
     .hero p {
-      font-size: 18px;
-      line-height: 1.8;
-      margin-bottom: 30px;
+      font-size: 17px;
+      max-width: 520px;
+      margin: 0 auto 28px;
+      color: #6d6256;
     }
 
     .button {
       display: inline-block;
-      padding: 14px 30px;
-      background: #817367;
+      background: #5c5145;
       color: white;
       text-decoration: none;
-      border-radius: 3px;
+      padding: 13px 28px;
+      border-radius: 2px;
       letter-spacing: 1px;
-      transition: .3s;
-    }
-
-    .button:hover {
-      background: #62574e;
+      font-size: 14px;
     }
 
     section {
-      padding: 70px 7%;
+      padding: 65px 20px;
+      max-width: 1100px;
+      margin: auto;
     }
 
     .section-title {
       text-align: center;
-      margin-bottom: 45px;
+      margin-bottom: 40px;
     }
 
     .section-title h2 {
       font-size: 30px;
-      letter-spacing: 3px;
-      font-weight: normal;
+      color: #50463c;
+      letter-spacing: 2px;
     }
 
     .section-title p {
-      margin-top: 12px;
-      color: #8b8076;
-    }
-
-    .categories {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 20px;
-      max-width: 900px;
-      margin: auto;
-    }
-
-    .category {
-      background: #eee7dd;
-      padding: 38px 20px;
-      text-align: center;
-      border: 1px solid #ded5c9;
-      transition: .3s;
-    }
-
-    .category:hover {
-      transform: translateY(-4px);
-    }
-
-    .category h3 {
-      font-size: 21px;
-      margin-bottom: 10px;
-      font-weight: normal;
-    }
-
-    .category p {
-      color: #857a70;
+      margin-top: 8px;
+      color: #9a8975;
       font-size: 14px;
     }
 
-    .about {
-      background: #eee7dd;
+    .collections {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 18px;
+    }
+
+    .card {
+      background: #fffdf9;
+      border: 1px solid #ded3c4;
+      padding: 35px 18px;
       text-align: center;
+      min-height: 160px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .card span {
+      font-size: 28px;
+      margin-bottom: 12px;
+    }
+
+    .card h3 {
+      font-size: 17px;
+      color: #50463c;
+      margin-bottom: 5px;
+    }
+
+    .card p {
+      font-family: Arial, sans-serif;
+      font-size: 12px;
+      color: #8a7d6e;
+    }
+
+    .about {
+      text-align: center;
+      background: #eee7dc;
+      max-width: none;
     }
 
     .about-content {
-      max-width: 750px;
+      max-width: 700px;
       margin: auto;
-      line-height: 1.9;
-      color: #625950;
+    }
+
+    .about h2 {
+      font-size: 30px;
+      margin-bottom: 20px;
+      color: #50463c;
+    }
+
+    .about p {
+      font-size: 16px;
+      color: #6d6256;
     }
 
     .contact {
       text-align: center;
     }
 
-    .socials {
-      margin-top: 25px;
-      line-height: 2;
-    }
-
-    .socials a {
-      color: #75695e;
-      text-decoration: none;
-      display: block;
+    .contact p {
+      margin-bottom: 25px;
+      color: #75695d;
     }
 
     footer {
-      background: #75695e;
-      color: white;
+      background: #50463c;
+      color: #f7f3ec;
       text-align: center;
-      padding: 25px 15px;
+      padding: 35px 20px;
+    }
+
+    footer .logo {
+      color: #f7f3ec;
+      font-size: 24px;
+    }
+
+    .socials {
+      margin: 18px 0;
+    }
+
+    .socials a {
+      color: #f7f3ec;
+      text-decoration: none;
+      margin: 0 8px;
+      font-family: Arial, sans-serif;
       font-size: 13px;
     }
 
-    @media (max-width: 650px) {
-      header {
-        flex-direction: column;
-        gap: 12px;
-      }
+    footer p {
+      font-family: Arial, sans-serif;
+      font-size: 11px;
+      opacity: 0.8;
+    }
 
-      nav a {
-        margin: 0 7px;
-        font-size: 12px;
-      }
-
+    @media (max-width: 600px) {
       .hero h1 {
         font-size: 38px;
-        letter-spacing: 6px;
+        letter-spacing: 5px;
       }
 
       .hero p {
-        font-size: 16px;
+        font-size: 15px;
       }
 
-      .categories {
+      .collections {
         grid-template-columns: 1fr;
+      }
+
+      nav a {
+        margin: 0 5px;
+        font-size: 12px;
       }
     }
   </style>
@@ -205,129 +242,52 @@
 
 <body>
 
-<header>
-  <div class="logo">ESSENCIA</div>
+  <header>
+    <div class="logo">ESSENCIA</div>
+    <div class="tagline">Votre parfum, votre signature</div>
 
-  <nav>
-    <a href="#accueil">Accueil</a>
-    <a href="#collections">Collections</a>
-    <a href="#apropos">À propos</a>
-    <a href="#contact">Contact</a>
-  </nav>
-</header>
-
-
-<section class="hero" id="accueil">
-  <div class="hero-content">
-
-    <h1>ESSENCIA</h1>
-
-    <p>
-      Découvrez des fragrances choisies avec soin,
-      pensées pour accompagner chaque personnalité.
-    </p>
-
-    <a href="#collections" class="button">
-      Découvrir nos collections
-    </a>
-
-  </div>
-</section>
+    <nav>
+      <a href="#accueil">Accueil</a>
+      <a href="#collections">Collections</a>
+      <a href="#apropos">À propos</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
 
 
-<section id="collections">
+  <main>
 
-  <div class="section-title">
-    <h2>Nos collections</h2>
-    <p>Des senteurs pour créer votre propre signature.</p>
-  </div>
+    <section class="hero" id="accueil">
+      <div class="hero-content">
 
-  <div class="categories">
+        <small>Bienvenue chez ESSENCIA</small>
 
-    <div class="category">
-      <h3>Huiles parfumées</h3>
-      <p>5 ml · 10 ml · 20 ml</p>
-    </div>
+        <h1>ESSENCIA</h1>
 
-    <div class="category">
-      <h3>Extraits de parfums</h3>
-      <p>20 ml · 30 ml · 50 ml</p>
-    </div>
+        <p>
+          Une sélection de fragrances élégantes et soigneusement choisies
+          pour accompagner chaque personnalité.
+        </p>
 
-    <div class="category">
-      <h3>Parfums authentiques</h3>
-      <p>Une sélection de fragrances soigneusement choisies.</p>
-    </div>
+        <a class="button" href="#collections">
+          DÉCOUVRIR NOS PARFUMS
+        </a>
 
-    <div class="category">
-      <h3>Brumes</h3>
-      <p>Légères, fraîches et agréables au quotidien.</p>
-    </div>
-
-    <div class="category">
-      <h3>Testeurs</h3>
-      <p>3 ml pour découvrir votre prochaine fragrance.</p>
-    </div>
-
-  </div>
-
-</section>
+      </div>
+    </section>
 
 
-<section class="about" id="apropos">
+    <section id="collections">
 
-  <div class="section-title">
-    <h2>À propos d'ESSENCIA</h2>
-  </div>
+      <div class="section-title">
+        <h2>Nos collections</h2>
+        <p>Des fragrances pour toutes les envies.</p>
+      </div>
 
-  <div class="about-content">
+      <div class="collections">
 
-    <p>
-      ESSENCIA est une parfumerie en ligne née d'une envie simple :
-      rendre la découverte du parfum plus élégante, accessible et personnelle.
-    </p>
-
-    <br>
-
-    <p>
-      Nous sélectionnons différentes fragrances afin que chacun puisse
-      trouver celle qui correspond à son style, son humeur et sa personnalité.
-    </p>
-
-    <br>
-
-    <strong>ESSENCIA — Votre parfum, votre signature.</strong>
-
-  </div>
-
-</section>
-
-
-<section class="contact" id="contact">
-
-  <div class="section-title">
-    <h2>Restons connectés</h2>
-    <p>Suivez ESSENCIA et découvrez nos nouveautés.</p>
-  </div>
-
-  <div class="socials">
-
-    <a href="#">Instagram : @essencia.officiel</a>
-
-    <a href="#">TikTok : @essencia.officiel</a>
-
-    <a href="#">Snapchat : essencia00</a>
-
-    <a href="tel:+221772768356">WhatsApp : 77 276 83 56</a>
-
-  </div>
-
-</section>
-
-
-<footer>
-  © 2026 ESSENCIA — Tous droits réservés.
-</footer>
-
-</body>
-</html>
+        <div class="card">
+          <span>🌸</span>
+          <h3>Huiles parfumées</h3>
+          <p>5 ml · 10 ml · 20 ml</p>
+       
