@@ -4,12 +4,87 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>ESSENCIA — Administration</title>
+
+  <style>
+    body {
+      margin: 0;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: #FAF7F1;
+      font-family: Arial, sans-serif;
+      color: #5C5145;
+    }
+
+    .login-box {
+      width: 90%;
+      max-width: 400px;
+      padding: 35px 25px;
+      background: white;
+      border: 1px solid #D8CEC0;
+      border-radius: 15px;
+      box-sizing: border-box;
+      text-align: center;
+      box-shadow: 0 8px 25px rgba(80, 70, 60, 0.08);
+    }
+
+    .login-box h1 {
+      margin-bottom: 8px;
+      letter-spacing: 2px;
+    }
+
+    .login-box p {
+      margin-bottom: 25px;
+      color: #88796B;
+    }
+
+    input {
+      width: 100%;
+      padding: 13px;
+      margin-bottom: 15px;
+      box-sizing: border-box;
+      border: 1px solid #D8CEC0;
+      border-radius: 8px;
+      font-size: 15px;
+    }
+
+    button {
+      width: 100%;
+      padding: 13px;
+      border: none;
+      border-radius: 8px;
+      background: #5C5145;
+      color: white;
+      font-size: 15px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background: #50463C;
+    }
+
+    #message {
+      margin-top: 15px;
+      font-size: 14px;
+    }
+  </style>
 </head>
 
 <body>
 
-  <h1>Administration ESSENCIA</h1>
-  <p>Connexion à l'espace administrateur</p>
+  <div class="login-box">
+    <h1>ESSENCIA</h1>
+    <p>Espace administrateur</p>
+
+    <input type="email" id="email" placeholder="Adresse e-mail">
+
+    <input type="password" id="password" placeholder="Mot de passe">
+
+    <button onclick="login()">Se connecter</button>
+
+    <div id="message"></div>
+  </div>
 
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
@@ -21,6 +96,31 @@
       SUPABASE_URL,
       SUPABASE_KEY
     );
+
+    async function login() {
+      const email = document.getElementById("email").value;
+      const password = document.getElementById("password").value;
+      const message = document.getElementById("message");
+
+      message.textContent = "Connexion...";
+
+      const { data, error } =
+        await supabaseClient.auth.signInWithPassword({
+          email: email,
+          password: password
+        });
+
+      if (error) {
+        message.textContent = "E-mail ou mot de passe incorrect.";
+        return;
+      }
+
+      message.textContent = "Connexion réussie !";
+
+      setTimeout(() => {
+        window.location.href = "admin-dashboard.html";
+      }, 800);
+    }
   </script>
 
 </body>
