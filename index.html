@@ -586,7 +586,7 @@ footer p {
 
 
 <!-- PRODUITS -->
-<section id="produits">
+< id="produits">
 
   <div class="section-heading">
     <p class="section-label">LA SÉLECTION ESSENCIA</p>
@@ -594,96 +594,12 @@ footer p {
     <p>Découvrez notre sélection du moment.</p>
   </div>
 
-
-  <div class="products">
-
-    <!-- PRODUIT 1 -->
-    <div class="product">
-
-      <div class="product-image">
-        <div class="mini-bottle"></div>
-      </div>
-
-      <div class="product-info">
-
-        <p class="product-category">
-          PARFUM AUTHENTIQUE
-        </p>
-
-        <h3>Oud Al Malick</h3>
-
-        <p class="format">50 ml</p>
-
-        <p class="price">15 000 F CFA</p>
-
-        <a
-          class="button"
-          href="https://wa.me/221772768356?text=Bonjour%20ESSENCIA%2C%20je%20suis%20intéressée%20par%20Oud%20Al%20Malick%2050%20ml."
-          target="_blank">
-          COMMANDER
-        </a>
-
-      </div>
-    </div>
-
-
-    <!-- PRODUIT 2 -->
-    <div class="product">
-
-      <div class="product-image">
-        <div class="mini-bottle"></div>
-      </div>
-
-      <div class="product-info">
-
-        <p class="product-category">
-          NOUVEAUTÉ
-        </p>
-
-        <h3>À découvrir</h3>
-
-        <p class="format">
-          Nouvelle fragrance
-        </p>
-
-        <p class="price">
-          Bientôt disponible
-        </p>
-
-      </div>
-    </div>
-
-
-    <!-- PRODUIT 3 -->
-    <div class="product">
-
-      <div class="product-image">
-        <div class="mini-bottle"></div>
-      </div>
-
-      <div class="product-info">
-
-        <p class="product-category">
-          PROCHAINEMENT
-        </p>
-
-        <h3>Nouvelle sélection</h3>
-
-        <p class="format">
-          Une fragrance arrive
-        </p>
-
-        <p class="price">
-          Bientôt disponible
-        </p>
-
-      </div>
-    </div>
-
-  </div>
-
+<div class="products" id="products-list">
+  <p style="text-align:center; grid-column:1/-1;">
+    Chargement des parfums...
+  </p>
+</div>
 </section>
-
 
 <!-- À PROPOS -->
 <section id="apropos">
@@ -766,6 +682,95 @@ footer p {
   </p>
 
 </footer>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
+<script>
+const SUPABASE_URL = "https://xztrujlifqftuwwvkszg.supabase.co";
+const SUPABASE_KEY = "sb_publishable_yFK4WfHhl8teFDQusYaYfw_3WKwprSA";
+
+const supabaseClient = supabase.createClient(
+  SUPABASE_URL,
+  SUPABASE_KEY
+);
+
+async function loadProducts() {
+
+  const container = document.getElementById("products-list");
+
+  const { data, error } = await supabaseClient
+    .from("products")
+    .select("*")
+    .order("id", { ascending: false });
+
+  if (error) {
+    console.error(error);
+    container.innerHTML =
+      "<p style='text-align:center;grid-column:1/-1;'>Impossible de charger les produits.</p>";
+    return;
+  }
+
+  if (!data || data.length === 0) {
+    container.innerHTML =
+      "<p style='text-align:center;grid-column:1/-1;'>Aucun produit disponible pour le moment.</p>";
+    return;
+  }
+
+  container.innerHTML = data.map(product => {
+
+    const image = product.image_url
+      ? `<img src="${product.image_url}" alt="${product.name}"
+           style="width:100%;height:100%;object-fit:contain;">`
+      : `<div class="mini-bottle"></div>`;
+
+    const price = product.price
+      ? `${Number(product.price).toLocaleString("fr-FR")} F CFA`
+      : "Prix sur demande";
+
+    const format = product.format || "";
+
+    const message =
+      `Bonjour ESSENCIA, je suis intéressée par ${product.name}${format ? " " + format : ""}.`;
+
+    const whatsapp =
+      `https://wa.me/221772768356?text=${encodeURIComponent(message)}`;
+
+    return `
+      <div class="product">
+
+        <div class="product-image">
+          ${image}
+        </div>
+
+        <div class="product-info">
+
+          <p class="product-category">
+            ${(product.category || "PARFUM").toUpperCase()}
+          </p>
+
+          <h3>${product.name || ""}</h3>
+
+          <p class="format">${format}</p>
+
+          <p class="price">${price}</p>
+
+          <a
+            class="button"
+            href="${whatsapp}"
+            target="_blank">
+            COMMANDER
+          </a>
+
+        </div>
+
+      </div>
+    `;
+
+  }).join("");
+}
+
+loadProducts();
+</script>
+
+</body>
 </body>
 </html>
