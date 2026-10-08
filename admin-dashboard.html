@@ -420,9 +420,7 @@ async function saveProduct() {
   const file =
     fileInput.files[0];
 
-  let image_url =
-    document.getElementById("image_url")?.value || "";
-
+  let image_url = "";
   if (file) {
 
     const fileName =
