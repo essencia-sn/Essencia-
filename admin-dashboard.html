@@ -3,142 +3,570 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
   <title>ESSENCIA — Administration</title>
 
   <style>
+    * {
+      box-sizing: border-box;
+    }
+
     body {
       margin: 0;
-      padding: 30px 20px;
       background: #FAF7F1;
-      font-family: Arial, sans-serif;
       color: #5C5145;
+      font-family: Arial, sans-serif;
     }
 
-    .container {
-      max-width: 1000px;
-      margin: auto;
-    }
-
-    h1 {
-      text-align: center;
-      margin-bottom: 10px;
-    }
-
-    .intro {
-      text-align: center;
-      color: #88796B;
-      margin-bottom: 30px;
-    }
-
-    .box {
+    header {
       background: white;
-      border: 1px solid #D8CEC0;
-      border-radius: 15px;
-      padding: 25px;
+      border-bottom: 1px solid #DED5CA;
+      padding: 18px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    header h1 {
+      margin: 0;
+      letter-spacing: 3px;
+      font-size: 22px;
+    }
+
+    .logout {
+      background: transparent;
+      color: #5C5145;
+      border: 1px solid #5C5145;
+      padding: 8px 14px;
+    }
+
+    main {
+      max-width: 1100px;
+      margin: auto;
+      padding: 25px 18px 50px;
+    }
+
+    .top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 15px;
+      margin-bottom: 25px;
+    }
+
+    .top h2 {
+      margin: 0;
     }
 
     button {
-      padding: 12px 18px;
       border: none;
       border-radius: 8px;
+      padding: 11px 16px;
+      cursor: pointer;
       background: #5C5145;
       color: white;
-      cursor: pointer;
+      font-size: 14px;
     }
 
     button:hover {
       background: #50463C;
     }
 
-    #products {
-      margin-top: 25px;
+    .products {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 18px;
     }
 
-    .product {
-      padding: 15px 0;
-      border-bottom: 1px solid #E5DED5;
+    .card {
+      background: white;
+      border: 1px solid #DED5CA;
+      border-radius: 14px;
+      padding: 18px;
     }
 
-    .product:last-child {
-      border-bottom: none;
+    .card img {
+      width: 100%;
+      height: 190px;
+      object-fit: contain;
+      border-radius: 10px;
+      background: #F7F3ED;
+      margin-bottom: 12px;
     }
 
-    .product-name {
-      font-weight: bold;
-      font-size: 17px;
+    .card h3 {
+      margin: 5px 0;
     }
 
-    .product-price {
-      margin-top: 5px;
+    .info {
       color: #88796B;
+      font-size: 14px;
+      line-height: 1.6;
+    }
+
+    .actions {
+      display: flex;
+      gap: 8px;
+      margin-top: 15px;
+    }
+
+    .edit {
+      flex: 1;
+    }
+
+    .delete {
+      background: #8A4D45;
+    }
+
+    .form-box {
+      display: none;
+      background: white;
+      border: 1px solid #DED5CA;
+      border-radius: 14px;
+      padding: 20px;
+      margin-bottom: 25px;
+    }
+
+    .form-box h2 {
+      margin-top: 0;
+    }
+
+    input,
+    textarea {
+      width: 100%;
+      padding: 12px;
+      margin: 7px 0 13px;
+      border: 1px solid #D8CEC0;
+      border-radius: 8px;
+      font-size: 14px;
+      font-family: inherit;
+    }
+
+    textarea {
+      min-height: 100px;
+      resize: vertical;
+    }
+
+    .form-buttons {
+      display: flex;
+      gap: 10px;
+    }
+
+    .cancel {
+      background: #88796B;
     }
 
     #message {
-      margin-top: 15px;
+      margin: 15px 0;
       color: #88796B;
+    }
+
+    @media (max-width: 600px) {
+      .top {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      header {
+        padding: 15px;
+      }
     }
   </style>
 </head>
 
 <body>
 
-  <div class="container">
+<header>
+  <h1>ESSENCIA</h1>
+  <button class="logout" onclick="logout()">Déconnexion</button>
+</header>
 
-    <h1>ESSENCIA</h1>
-    <p class="intro">Tableau de bord administrateur</p>
+<main>
 
-    <div class="box">
-      <button onclick="loadProducts()">Charger les produits</button>
+  <div class="top">
+    <div>
+      <h2>Produits</h2>
+      <p>Gérez votre catalogue ESSENCIA</p>
+    </div>
 
-      <div id="message"></div>
+    <button onclick="openAddForm()">+ Ajouter un produit</button>
+  </div>
 
-      <div id="products"></div>
+  <div id="formBox" class="form-box">
+
+    <h2 id="formTitle">Ajouter un produit</h2>
+
+    <input type="hidden" id="productId">
+
+    <label>Nom du produit</label>
+    <input id="name" placeholder="Ex : Oud al Malick">
+
+    <label>Catégorie</label>
+    <input id="category" placeholder="Ex : Parfums">
+
+    <label>Prix</label>
+    <input id="price" type="number" placeholder="Ex : 15000">
+
+    <label>Format</label>
+    <input id="format" placeholder="Ex : 50 ml">
+
+    <label>Photo — URL</label>
+    <input id="image_url" placeholder="https://...">
+
+    <label>Description</label>
+    <textarea id="description" placeholder="Description du produit"></textarea>
+
+    <div class="form-buttons">
+      <button onclick="saveProduct()">Enregistrer</button>
+      <button class="cancel" onclick="closeForm()">Annuler</button>
     </div>
 
   </div>
 
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <div id="message"></div>
 
-  <script>
-    const SUPABASE_URL = "https://xztrujlifqftuwwvkszg.supabase.co";
-    const SUPABASE_KEY = "sb_publishable_yFK4WfHhl8teFDQusYaYfw_3WKwprSA";
+  <div id="products" class="products"></div>
 
-    const supabaseClient = supabase.createClient(
-      SUPABASE_URL,
-      SUPABASE_KEY
+</main>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<script>
+
+const SUPABASE_URL =
+  "https://xztrujlifqftuwwvkszg.supabase.co";
+
+const SUPABASE_KEY =
+  "sb_publishable_yFK4WfHhl8teFDQusYaYfw_3WKwprSA";
+
+const supabaseClient =
+  supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+
+
+/* Vérification de connexion */
+
+async function checkUser() {
+
+  const { data } =
+    await supabaseClient.auth.getSession();
+
+  if (!data.session) {
+    window.location.href = "admin.html";
+  }
+
+}
+
+
+/* Charger les produits */
+
+async function loadProducts() {
+
+  const productsBox =
+    document.getElementById("products");
+
+  const message =
+    document.getElementById("message");
+
+  message.textContent = "Chargement...";
+
+  const { data, error } =
+    await supabaseClient
+      .from("products")
+      .select("*")
+      .order("id", { ascending: false });
+
+  if (error) {
+
+    message.textContent =
+      "Erreur : " + error.message;
+
+    return;
+  }
+
+  message.textContent =
+    data.length + " produit(s)";
+
+  productsBox.innerHTML = "";
+
+  data.forEach(product => {
+
+    const image =
+      product.image_url ||
+      "https://via.placeholder.com/400x300?text=ESSENCIA";
+
+    productsBox.innerHTML += `
+
+      <div class="card">
+
+        <img
+          src="${image}"
+          alt="${product.name || "Produit"}"
+          onerror="this.src='https://via.placeholder.com/400x300?text=ESSENCIA'"
+        >
+
+        <h3>
+          ${product.name || "Sans nom"}
+        </h3>
+
+        <div class="info">
+
+          Catégorie :
+          ${product.category || "Non renseignée"}
+          <br>
+
+          Prix :
+          ${product.price || "0"} F CFA
+          <br>
+
+          Format :
+          ${product.format || "Non renseigné"}
+
+        </div>
+
+        <div class="actions">
+
+          <button
+            class="edit"
+            onclick='editProduct(${JSON.stringify(product)})'>
+            Modifier
+          </button>
+
+          <button
+            class="delete"
+            onclick="deleteProduct('${product.id}')">
+            Supprimer
+          </button>
+
+        </div>
+
+      </div>
+
+    `;
+
+  });
+
+}
+
+
+/* Ouvrir ajout */
+
+function openAddForm() {
+
+  document.getElementById("formBox").style.display =
+    "block";
+
+  document.getElementById("formTitle").textContent =
+    "Ajouter un produit";
+
+  clearForm();
+
+  window.scrollTo({
+    top: 0,
+    behavior: "smooth"
+  });
+
+}
+
+
+/* Modifier */
+
+function editProduct(product) {
+
+  document.getElementById("formBox").style.display =
+    "block";
+
+  document.getElementById("formTitle").textContent =
+    "Modifier le produit";
+
+  document.getElementById("productId").value =
+    product.id || "";
+
+  document.getElementById("name").value =
+    product.name || "";
+
+  document.getElementById("category").value =
+    product.category || "";
+
+  document.getElementById("price").value =
+    product.price || "";
+
+  document.getElementById("format").value =
+    product.format || "";
+
+  document.getElementById("image_url").value =
+    product.image_url || "";
+
+  document.getElementById("description").value =
+    product.description || "";
+
+  window.scrollTo({
+    top: 0,
+    behavior: "smooth"
+  });
+
+}
+
+
+/* Enregistrer */
+
+async function saveProduct() {
+
+  const id =
+    document.getElementById("productId").value;
+
+  const product = {
+
+    name:
+      document.getElementById("name").value,
+
+    category:
+      document.getElementById("category").value,
+
+    price:
+      document.getElementById("price").value,
+
+    format:
+      document.getElementById("format").value,
+
+    image_url:
+      document.getElementById("image_url").value,
+
+    description:
+      document.getElementById("description").value
+
+  };
+
+
+  let result;
+
+
+  if (id) {
+
+    result =
+      await supabaseClient
+        .from("products")
+        .update(product)
+        .eq("id", id);
+
+  } else {
+
+    result =
+      await supabaseClient
+        .from("products")
+        .insert([product]);
+
+  }
+
+
+  if (result.error) {
+
+    alert(
+      "Erreur : " +
+      result.error.message
     );
 
-    async function loadProducts() {
+    return;
 
-      const message = document.getElementById("message");
-      const products = document.getElementById("products");
+  }
 
-      message.textContent = "Chargement...";
-      products.innerHTML = "";
 
-      const { data, error } = await supabaseClient
-        .from("products")
-        .select("*");
+  alert("Produit enregistré ✅");
 
-      if (error) {
-        message.textContent = "Erreur : " + error.message;
-        return;
-      }
+  closeForm();
 
-      message.textContent = data.length + " produit(s) trouvé(s).";
+  loadProducts();
 
-      data.forEach(product => {
+}
 
-        products.innerHTML += `
-          <div class="product">
-            <div class="product-name">${product.name || "Sans nom"}</div>
-            <div class="product-price">${product.price || "Prix non renseigné"} F CFA</div>
-          </div>
-        `;
 
-      });
-    }
-  </script>
+/* Supprimer */
+
+async function deleteProduct(id) {
+
+  const confirmation =
+    confirm(
+      "Voulez-vous vraiment supprimer ce produit ?"
+    );
+
+  if (!confirmation) return;
+
+
+  const { error } =
+    await supabaseClient
+      .from("products")
+      .delete()
+      .eq("id", id);
+
+
+  if (error) {
+
+    alert(
+      "Erreur : " +
+      error.message
+    );
+
+    return;
+
+  }
+
+
+  alert("Produit supprimé.");
+
+  loadProducts();
+
+}
+
+
+/* Fermer formulaire */
+
+function closeForm() {
+
+  document.getElementById("formBox").style.display =
+    "none";
+
+  clearForm();
+
+}
+
+
+/* Vider formulaire */
+
+function clearForm() {
+
+  document.getElementById("productId").value = "";
+
+  document.getElementById("name").value = "";
+
+  document.getElementById("category").value = "";
+
+  document.getElementById("price").value = "";
+
+  document.getElementById("format").value = "";
+
+  document.getElementById("image_url").value = "";
+
+  document.getElementById("description").value = "";
+
+}
+
+
+/* Déconnexion */
+
+async function logout() {
+
+  await supabaseClient.auth.signOut();
+
+  window.location.href = "admin.html";
+
+}
+
+
+/* Démarrage */
+
+checkUser();
+loadProducts();
+
+</script>
 
 </body>
 </html>
