@@ -1,1 +1,27 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ESSENCIA — Administration</title>
+</head>
 
+<body>
+
+  <h1>Administration ESSENCIA</h1>
+  <p>Connexion à l'espace administrateur</p>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+  <script>
+    const SUPABASE_URL = "https://xztrujlifqftuwwvkszg.supabase.co";
+    const SUPABASE_KEY = "sb_publishable_yFK4WfHhl8teFDQusYaYfw_3WKwprSA";
+
+    const supabaseClient = supabase.createClient(
+      SUPABASE_URL,
+      SUPABASE_KEY
+    );
+  </script>
+
+</body>
+</html>
