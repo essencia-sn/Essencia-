@@ -3,13 +3,142 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ESSENCIA — Tableau de bord</title>
+  <title>ESSENCIA — Administration</title>
+
+  <style>
+    body {
+      margin: 0;
+      padding: 30px 20px;
+      background: #FAF7F1;
+      font-family: Arial, sans-serif;
+      color: #5C5145;
+    }
+
+    .container {
+      max-width: 1000px;
+      margin: auto;
+    }
+
+    h1 {
+      text-align: center;
+      margin-bottom: 10px;
+    }
+
+    .intro {
+      text-align: center;
+      color: #88796B;
+      margin-bottom: 30px;
+    }
+
+    .box {
+      background: white;
+      border: 1px solid #D8CEC0;
+      border-radius: 15px;
+      padding: 25px;
+    }
+
+    button {
+      padding: 12px 18px;
+      border: none;
+      border-radius: 8px;
+      background: #5C5145;
+      color: white;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background: #50463C;
+    }
+
+    #products {
+      margin-top: 25px;
+    }
+
+    .product {
+      padding: 15px 0;
+      border-bottom: 1px solid #E5DED5;
+    }
+
+    .product:last-child {
+      border-bottom: none;
+    }
+
+    .product-name {
+      font-weight: bold;
+      font-size: 17px;
+    }
+
+    .product-price {
+      margin-top: 5px;
+      color: #88796B;
+    }
+
+    #message {
+      margin-top: 15px;
+      color: #88796B;
+    }
+  </style>
 </head>
 
 <body>
 
-  <h1>Tableau de bord ESSENCIA</h1>
-  <p>Bienvenue dans votre espace administrateur.</p>
+  <div class="container">
+
+    <h1>ESSENCIA</h1>
+    <p class="intro">Tableau de bord administrateur</p>
+
+    <div class="box">
+      <button onclick="loadProducts()">Charger les produits</button>
+
+      <div id="message"></div>
+
+      <div id="products"></div>
+    </div>
+
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+  <script>
+    const SUPABASE_URL = "https://xztrujlifqftuwwvkszg.supabase.co";
+    const SUPABASE_KEY = "sb_publishable_yFK4WfHhl8teFDQusYaYfw_3WKwprSA";
+
+    const supabaseClient = supabase.createClient(
+      SUPABASE_URL,
+      SUPABASE_KEY
+    );
+
+    async function loadProducts() {
+
+      const message = document.getElementById("message");
+      const products = document.getElementById("products");
+
+      message.textContent = "Chargement...";
+      products.innerHTML = "";
+
+      const { data, error } = await supabaseClient
+        .from("products")
+        .select("*");
+
+      if (error) {
+        message.textContent = "Erreur : " + error.message;
+        return;
+      }
+
+      message.textContent = data.length + " produit(s) trouvé(s).";
+
+      data.forEach(product => {
+
+        products.innerHTML += `
+          <div class="product">
+            <div class="product-name">${product.name || "Sans nom"}</div>
+            <div class="product-price">${product.price || "Prix non renseigné"} F CFA</div>
+          </div>
+        `;
+
+      });
+    }
+  </script>
 
 </body>
 </html>
