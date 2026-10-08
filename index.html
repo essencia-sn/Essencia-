@@ -55,40 +55,42 @@
       margin: 0 8px;
       font-size: 13px;
     }
-
+      
     .hero {
-      min-height: 78vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      padding: 50px 25px;
-      ;
-    }
+  min-height: 72vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 70px 25px;
+  background: #F3EEE5;
+  position: relative;
+}
 
-    .hero-content {
-      max-width: 650px;
-    }
+.hero-content {
+  max-width: 650px;
+}
 
-    .hero small {
-      letter-spacing: 3px;
-      color: #9a8975;
-      text-transform: uppercase;
-    }
+.hero-label {
+  font-size: 12px;
+  letter-spacing: 4px;
+  color: #88796B;
+  margin-bottom: 18px;
+}
 
-    .hero h1 {
-      font-size: 48px;
-      letter-spacing: 7px;
-      margin: 15px 0;
-      color: #50463c;
-    }
+.hero h1 {
+  font-size: 58px;
+  letter-spacing: 9px;
+  color: #5C5145;
+  margin-bottom: 18px;
+}
 
-    .hero p {
-      font-size: 17px;
-      max-width: 520px;
-      margin: 0 auto 28px;
-      color: #6d6256;
-    }
+.hero p:not(.hero-label) {
+  font-size: 17px;
+  color: #6D6256;
+  max-width: 500px;
+  margin: 0 auto 30px;
+}
 
     .button {
       display: inlbackground: #f3eee5;ine-block;
@@ -125,67 +127,98 @@
     }
 
     .collections {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 18px;
-    }
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
 
-    .card {
-      background: #fffdf9;
-      border: 1px solid #ded3c4;
-      padding: 35px 18px;
-      text-align: center;
-      min-height: 160px;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-    }
+.card {
+  background: #fffdf9;
+  border: 1px solid #ded3c4;
+  padding: 32px 24px;
+  min-height: 175px;
+  text-align: left;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
 
-    .card span {
-      font-size: 28px;
-      margin-bottom: 12px;
-    }
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 25px rgba(80, 70, 60, 0.08);
+}
 
-    .card h3 {
-      font-size: 17px;
-      color: #50463c;
-      margin-bottom: 5px;
-    }
+.card-number {
+  font-family: Arial, sans-serif;
+  font-size: 11px;
+  letter-spacing: 2px;
+  color: #88796B;
+  margin-bottom: 28px;
+}
 
-    .card p {
-      font-family: Arial, sans-serif;
-      font-size: 12px;
-      color: #8a7d6e;
-    }
+.card h3 {
+  font-size: 19px;
+  color: #50463C;
+  margin-bottom: 8px;
+}
+
+.card p {
+  font-family: Arial, sans-serif;
+  font-size: 12px;
+  color: #8A7D6E;
+  }
 .products {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 22px;
+  gap: 24px;
 }
 
 .product {
   background: #fffdf9;
   border: 1px solid #ded3c4;
-  padding: 18px;
+  overflow: hidden;
   text-align: center;
 }
 
 .product-image {
-  height: 230px;
+  height: 300px;
   background: #f3eee5;
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-bottom: 18px;
-  color: #9a8975;
+  color: #88796b;
   letter-spacing: 3px;
-  font-size: 13px;
+  font-size: 14px;
+  line-height: 1.8;
+}
+
+.product-info {
+  padding: 24px 18px 28px;
+}
+
+.product-category {
+  font-family: Arial, sans-serif;
+  font-size: 10px;
+  letter-spacing: 2px;
+  color: #88796b;
+  margin-bottom: 10px;
 }
 
 .product h3 {
   color: #50463c;
-  font-size: 19px;
-  margin-bottom: 5px;
+  font-size: 20px;
+  margin-bottom: 6px;
+}
+
+.format {
+  font-family: Arial, sans-serif;
+  font-size: 13px;
+  color: #8a7d6e;
+}
+
+.price {
+  font-family: Arial, sans-serif;
+  font-weight: bold;
+  margin: 10px 0 18px;
+  color: #5c5145;
 }
 
 .format {
@@ -309,91 +342,81 @@
   <main>
 
     <section class="hero" id="accueil">
-      <div class="hero-content">
-
-        <small>Bienvenue chez</small>
-
-        <h1>ESSENCIA</h1>
-
-        <p>
-          Une sélection de fragrances élégantes et soigneusement choisies
-          pour accompagner chaque personnalité.
-        </p>
-
-        <a class="button" href="#collections">
-          DÉCOUVRIR NOS PARFUMS
-        </a>
-
-      </div>
+    <section class="hero" id="accueil">
+  <div class="hero-content">
+    <p class="hero-label">L'ART DU PARFUM</p>
+    <h1>ESSENCIA</h1>
+    <p>Des fragrances élégantes choisies pour révéler votre signature.</p>
+    <a class="button" href="#produits">DÉCOUVRIR NOS PARFUMS</a>
+  </div>
     </section>
 
 
     <section id="collections">
+  <div class="section-title">
+    <p>NOTRE SÉLECTION</p>
+    <h2>Des fragrances pour chaque signature</h2>
+  </div>
 
-      <div class="section-title">
-        <h2>Nos collections</h2>
-        <p>Des fragrances pour toutes les envies.</p>
-      </div>
+  <div class="collections">
+    <div class="card">
+      <div class="card-number">01</div>
+      <h3>Huiles parfumées</h3>
+      <p>5 ml · 10 ml · 20 ml</p>
+    </div>
 
-      <div class="collections">
+    <div class="card">
+      <div class="card-number">02</div>
+      <h3>Extraits de parfums</h3>
+      <p>20 ml · 30 ml · 50 ml</p>
+    </div>
 
-        <div class="card">
-          <span>🌸</span>
-          <h3>Huiles parfumées</h3>
-          <p>5 ml · 10 ml · 20 ml</p>
-               </div>
+    <div class="card">
+      <div class="card-number">03</div>
+      <h3>Parfums authentiques</h3>
+      <p>Des fragrances originales</p>
+    </div>
 
-        <div class="card">
-          <span>✨</span>
-          <h3>Extraits de parfums</h3>
-          <p>20 ml · 30 ml · 50 ml</p>
-        </div>
+    <div class="card">
+      <div class="card-number">04</div>
+      <h3>Brumes</h3>
+      <p>Légères et délicates</p>
+    </div>
 
-        <div class="card">
-          <span>🖤</span>
-          <h3>Parfums authentiques</h3>
-          <p>Des fragrances originales</p>
-        </div>
-
-        <div class="card">
-          <span>🌿</span>
-          <h3>Brumes</h3>
-          <p>Légères et agréables</p>
-        </div>
-
-        <div class="card">
-          <span>🧴</span>
-          <h3>Testeurs</h3>
-          <p>Format 3 ml</p>
-        </div>
-
-      </div>
-
+    <div class="card">
+      <div class="card-number">05</div>
+      <h3>Testeurs</h3>
+      <p>Format 3 ml</p>
+    </div>
+  </div>
     </section>
     <section id="produits">
-
+<section id="produits">
   <div class="section-title">
+    <p>LA SÉLECTION ESSENCIA</p>
     <h2>Nos parfums</h2>
-    <p>Découvrez notre sélection du moment.</p>
+    <span>Des fragrances choisies avec soin.</span>
   </div>
 
   <div class="products">
 
     <div class="product">
       <div class="product-image">
-        <span>ESSENCIA</span>
+        <span>OUD<br>AL MALICK</span>
       </div>
 
-      <h3>Oud Al Malick</h3>
-      <p class="format">50 ml</p>
-      <p class="price">15 000 F CFA</p>
+      <div class="product-info">
+        <p class="product-category">PARFUM AUTHENTIQUE</p>
+        <h3>Oud Al Malick</h3>
+        <p class="format">50 ml</p>
+        <p class="price">15 000 F CFA</p>
 
-      <a
-        class="button"
-        href="https://wa.me/221772768356?text=Bonjour%20ESSENCIA%2C%20je%20suis%20intéressée%20par%20Oud%20Al%20Malick%2050%20ml."
-        target="_blank">
-        COMMANDER
-      </a>
+        <a class="button"
+           href="https://wa.me/221772768356?text=Bonjour%20ESSENCIA%2C%20je%20suis%20intéressée%20par%20Oud%20Al%20Malick%2050%20ml."
+           target="_blank">
+          COMMANDER
+        </a>
+      </div>
     </div>
 
     <div class="product">
@@ -401,9 +424,12 @@
         <span>ESSENCIA</span>
       </div>
 
-      <h3>À venir</h3>
-      <p class="format">Nouveau parfum</p>
-      <p class="price">Bientôt disponible</p>
+      <div class="product-info">
+        <p class="product-category">BIENTÔT</p>
+        <h3>Nouvelle fragrance</h3>
+        <p class="format">Découvrez-la prochainement</p>
+        <p class="price">À venir</p>
+      </div>
     </div>
 
     <div class="product">
@@ -411,13 +437,15 @@
         <span>ESSENCIA</span>
       </div>
 
-      <h3>À venir</h3>
-      <p class="format">Nouvelle fragrance</p>
-      <p class="price">Bientôt disponible</p>
+      <div class="product-info">
+        <p class="product-category">BIENTÔT</p>
+        <h3>Nouvelle fragrance</h3>
+        <p class="format">Une nouvelle sélection arrive</p>
+        <p class="price">À venir</p>
+      </div>
     </div>
 
   </div>
-
 </section>
 
 <section class="about" id="apropos">
