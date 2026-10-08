@@ -414,6 +414,46 @@ async function saveProduct() {
   const id =
     document.getElementById("productId").value;
 
+  const fileInput =
+    document.getElementById("imageFile");
+
+  const file =
+    fileInput.files[0];
+
+  let image_url =
+    document.getElementById("image_url")?.value || "";
+
+  if (file) {
+
+    const fileName =
+      Date.now() + "-" +
+      file.name.replace(/\s+/g, "-");
+
+    const { error: uploadError } =
+      await supabaseClient.storage
+        .from("products")
+        .upload(fileName, file);
+
+    if (uploadError) {
+
+      alert(
+        "Erreur photo : " +
+        uploadError.message
+      );
+
+      return;
+    }
+
+    const { data: publicData } =
+      supabaseClient.storage
+        .from("products")
+        .getPublicUrl(fileName);
+
+    image_url =
+      publicData.publicUrl;
+  }
+
+
   const product = {
 
     name:
@@ -429,7 +469,7 @@ async function saveProduct() {
       document.getElementById("format").value,
 
     image_url:
-      document.getElementById("image_url").value,
+      image_url,
 
     description:
       document.getElementById("description").value
@@ -476,7 +516,7 @@ async function saveProduct() {
 
   loadProducts();
 
-}
+    }
 
 
 /* Supprimer */
