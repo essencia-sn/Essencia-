@@ -156,7 +156,55 @@
       font-size: 12px;
       color: #8a7d6e;
     }
+.products {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 22px;
+}
 
+.product {
+  background: #fffdf9;
+  border: 1px solid #ded3c4;
+  padding: 18px;
+  text-align: center;
+}
+
+.product-image {
+  height: 230px;
+  background: #eee7dc;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 18px;
+  color: #9a8975;
+  letter-spacing: 3px;
+  font-size: 13px;
+}
+
+.product h3 {
+  color: #50463c;
+  font-size: 19px;
+  margin-bottom: 5px;
+}
+
+.format {
+  font-family: Arial, sans-serif;
+  font-size: 13px;
+  color: #8a7d6e;
+}
+
+.price {
+  font-family: Arial, sans-serif;
+  font-weight: bold;
+  margin: 8px 0 16px;
+  color: #5c5145;
+}
+
+@media (max-width: 700px) {
+  .products {
+    grid-template-columns: 1fr;
+  }
+}
     .about {
       text-align: center;
       background: #eee7dc;
@@ -275,7 +323,55 @@
 
       </div>
     </section>
+<section id="produits">
 
+  <div class="section-title">
+    <h2>Nos parfums</h2>
+    <p>Découvrez notre sélection du moment.</p>
+  </div>
+
+  <div class="products">
+
+    <div class="product">
+      <div class="product-image">
+        <span>ESSENCIA</span>
+      </div>
+
+      <h3>Oud Al Malick</h3>
+      <p class="format">50 ml</p>
+      <p class="price">15 000 F CFA</p>
+
+      <a
+        class="button"
+        href="https://wa.me/221772768356?text=Bonjour%20ESSENCIA%2C%20je%20suis%20intéressée%20par%20Oud%20Al%20Malick%2050%20ml."
+        target="_blank">
+        COMMANDER
+      </a>
+    </div>
+
+    <div class="product">
+      <div class="product-image">
+        <span>ESSENCIA</span>
+      </div>
+
+      <h3>À venir</h3>
+      <p class="format">Nouveau parfum</p>
+      <p class="price">Bientôt disponible</p>
+    </div>
+
+    <div class="product">
+      <div class="product-image">
+        <span>ESSENCIA</span>
+      </div>
+
+      <h3>À venir</h3>
+      <p class="format">Nouvelle fragrance</p>
+      <p class="price">Bientôt disponible</p>
+    </div>
+
+  </div>
+
+</section>
 
     <section id="collections">
 
